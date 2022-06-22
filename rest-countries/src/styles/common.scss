@@ -1,0 +1,48 @@
+// Global color palette //
+
+// Light Mode Background
+$very-light-gray: hsl(0, 0%, 98%);
+// Light Mode Text
+$very-dark-blue-txt: hsl(200, 15%, 8%);
+// Light Mode Input
+$dark-gray: hsl(0, 0%, 52%);
+
+// Dark Mode Background
+$very-dark-blue-bck: hsl(207, 26%, 17%);
+// Dark Mode Text & Light Mode Elements
+$chosen-white: hsl(0, 0%, 100%);
+// Dark Mode Elements
+$dark-blue: hsl(209, 23%, 22%);
+
+// Global typography //
+
+$homepage-font-size: 14px;
+$detail-page-font-size: 16px;
+
+$weight-light: 300;
+$weight-bold: 600;
+$weight-bolder: 800;
+
+// Screen sizes //
+
+$mobile: 375px;
+$desktop: 1440px;
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  font-family: "Nunito Sans", sans-serif;
+  background-color: $very-light-gray;
+}
+
+main {
+  width: 90%;
+  margin: 0 auto;
+}
