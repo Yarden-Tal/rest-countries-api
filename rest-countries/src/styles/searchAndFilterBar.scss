@@ -1,0 +1,23 @@
+@use "./common.scss" as *;
+
+.search-filter-wrapper {
+  margin: 2em;
+
+  display: flex;
+  justify-content: space-between;
+  & .search-wrapper {
+    display: flex;
+    align-items: center;
+    & input[type="text"] {
+      border: none;
+      //   &:active {
+      //     border: none;
+      //   }
+    }
+  }
+  & .filter-wrapper {
+    & select {
+      border: none;
+    }
+  }
+}

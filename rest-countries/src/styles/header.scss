@@ -1,24 +1,24 @@
-@use "common";
+@use "./common.scss" as *;
 
 header {
-  color: common.$very-dark-blue-txt;
-  font-size: common.$homepage-font-size;
-  background-color: common.$chosen-white;
+  color: $very-dark-blue-txt;
+  font-size: $homepage-font-size;
+  background-color: $chosen-white;
   padding: 1em 3em;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 1px 1px 2px common.$dark-gray;
+  box-shadow: 1px 1px 2px $dark-gray;
 
   & .main-title {
-    font-weight: common.$weight-bolder;
-    font-size: common.$homepage-font-size + 4px;
+    font-weight: $weight-bolder;
+    font-size: $homepage-font-size + 4px;
   }
   & button {
-    color: common.$very-dark-blue-txt;
+    color: $very-dark-blue-txt;
     font-family: "Nunito Sans", sans-serif;
-    font-weight: common.$weight-bold;
-    background-color: common.$chosen-white;
+    font-weight: $weight-bold;
+    background-color: $chosen-white;
     padding: 0.5em;
     border: none;
     display: flex;
@@ -28,7 +28,7 @@ header {
     &:hover {
       cursor: pointer;
       border-radius: 20px;
-      background-color: common.$very-light-gray;
+      background-color: $very-light-gray;
     }
   }
 }
