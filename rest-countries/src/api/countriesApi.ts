@@ -1,42 +1,68 @@
 import axios from "axios";
+import { expandedCountryData, simpleCountryData } from "../models/country";
+import RegionsEnum from "../models/regionsEnum";
 
 const BASE_URL = "https://restcountries.com/v3.1/";
 
-export const getAllCountries = async () => {
+const getData = async () => {
   try {
-    const res = (await axios.get(`${BASE_URL}all`)).data;
-    // console.log(res);
-    res.forEach((c: any) => {
-      // const flag = c["flags"].svg;
-      // const name = c["name"].common;
-      // let nativeName = c["name"].nativeName;
-      // nativeName = Object.values(nativeName)[0];
-      // console.log(nativeName);
+    const res = (await axios(`${BASE_URL}all`)).data;
+    return res;
+  } catch (e) {
+    console.error(e);
+  }
+};
 
-      const capital = c["capital"];
+export const extractSimpleData = async () => {
+  try {
+    const res = await getData();
+    const simpleParams: simpleCountryData[] = res.map((c: any) => {
+      const flag: string = c.flags.svg;
+      const name: string = c.name.common;
+      const {
+        population,
+        region,
+        capital,
+      }: { population: number; region: string; capital: string } = c;
+      const paramsObj: simpleCountryData = {
+        flag,
+        name,
+        population,
+        region,
+        capital,
+      };
+      return paramsObj;
     });
-    return res.data;
+    return simpleParams;
   } catch (e) {
     console.error(e);
   }
 };
 
-export const getCountriesByRegion = async (region: string) => {
-  try {
-    // TODO test!
-    const { data: res } = await axios.get(`${BASE_URL}region/${region}`);
-    return res;
-  } catch (e) {
-    console.error(e);
-  }
-};
-
-export const getCountryByName = async (name: string) => {
-  try {
-    // TODO test!
-    const { data: res } = await axios.get(`${BASE_URL}name/${name}`);
-    return res;
-  } catch (e) {
-    console.error(e);
-  }
-};
+// export const extractExpandedData = async () => {
+//   const res = await getData();
+//   const expandedParams: expandedCountryData[] = res.map((c: any) => {
+//     const flag: string = c.flags.svg;
+//     const name: string = c.name.common;
+//     const {
+//       population,
+//       region,
+//       capital,
+//     }: { population: number; region: RegionsEnum; capital: string } = c;
+//     const paramsObj: expandedCountryData = {
+//       flag,
+//       name,
+//       population,
+//       region,
+//       capital,
+//       nativeName,
+//       subRegion,
+//       topLevelDomain,
+//       currencies,
+//       lnaguages,
+//       borderCountries
+//     };
+//     return paramsObj;
+//   });
+//   return expandedParams;
+// };

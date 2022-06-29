@@ -1,4 +1,4 @@
-const BackButton = () => {
+const BackButton = (): JSX.Element => {
   return <div>BackButton</div>;
 };
 

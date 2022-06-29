@@ -2,7 +2,7 @@ import moonSvg from "../assets/moon.svg";
 
 import "../styles/header.scss";
 
-const Header = () => {
+const Header = (): JSX.Element => {
   return (
     <header>
       <div className="main-title">Where in the world?</div>

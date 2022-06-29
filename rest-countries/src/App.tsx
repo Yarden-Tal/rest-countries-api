@@ -1,24 +1,22 @@
-import { useState } from "react";
-import BackButton from "./components/BackButton";
-import Countries from "./components/Countries";
-import Country from "./components/Country";
+// Routing
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import CountryPage from "./components/pages/country-page/CountryPage";
+import Home from "./components/pages/Home";
+// Components
 import Header from "./components/Header";
-import SearchAndFilterBar from "./components/SearchAndFilterBar";
 
-const App = () => {
-  const [isExpanded, setIsExpanded] = useState<boolean>(false);
-
+const App = (): JSX.Element => {
   return (
     <div className="App">
       <Header />
       <main>
-        {!isExpanded && <SearchAndFilterBar />}
-        {!isExpanded && <Countries />}
-        {isExpanded && <BackButton />}
-        {isExpanded && <Country />}
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/" element={<CountryPage />} />
+          </Routes>
+        </BrowserRouter>
       </main>
-      {/* if main view - searchfilterbar all countries */}
-      {/* If chosen country Single country */}
     </div>
   );
 };

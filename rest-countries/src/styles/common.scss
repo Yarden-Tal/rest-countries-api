@@ -27,6 +27,10 @@ $weight-bolder: 800;
 
 $mobile: 375px;
 $desktop: 1440px;
+
+// Global shadow //
+$chosen-shadow: 0 5px 10px -5px #ccc, 0 -1px 10px -5px #eee;
+
 html {
   box-sizing: border-box;
 }

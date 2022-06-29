@@ -1,0 +1,30 @@
+@use "./common.scss" as *;
+
+.country-wrapper {
+  background-color: $chosen-white;
+  box-shadow: $chosen-shadow;
+  border-radius: 3px;
+  min-width: 230px;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.9;
+  }
+  & .country-flag {
+    height: 45%;
+    & > img {
+      width: 100%;
+    }
+  }
+  & .country-info-wrapper {
+    padding: 2em;
+    & .country-title {
+      font-weight: $weight-bold;
+      font-size: 1.2rem;
+      margin-bottom: 0.5em;
+    }
+    font-weight: $weight-bold;
+    & span {
+      font-weight: initial;
+    }
+  }
+}
