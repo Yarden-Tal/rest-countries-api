@@ -2,6 +2,7 @@
 import { extractSimpleData } from "../../../api/countriesApi";
 // Components
 import SimpleCountry from "./SimpleCountry";
+import Loading from "../../Loading";
 // Style
 import "../../../styles/countries.scss";
 import { useEffect, useState } from "react";
@@ -12,21 +13,23 @@ const Countries = (): JSX.Element => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    const getCountries = async (): Promise<void> => {
+    const getCountries = async () => {
       const data = await extractSimpleData();
       setData(data);
     };
     getCountries();
   }, []);
-  if (!data) return <h1 style={{ textAlign: "center" }}>Loading...</h1>;
-  else
-    return (
-      <div className="countries-container">
-        {data.map((country, index) => (
+  return (
+    <div className="countries-container">
+      {data ? (
+        data.map((country, index) => (
           <SimpleCountry key={index} country={country} />
-        ))}
-      </div>
-    );
+        ))
+      ) : (
+        <Loading />
+      )}
+    </div>
+  );
 };
 
 export default Countries;
