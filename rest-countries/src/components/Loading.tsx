@@ -1,3 +1,10 @@
-const Loading = () => <h1 style={{ textAlign: "center" }}>Loading...</h1>;
+const Loading = () => {
+  return (
+    <div className="spinner-container">
+      <div className="loading-spinner"></div>
+      Loading...
+    </div>
+  );
+};
 
 export default Loading;

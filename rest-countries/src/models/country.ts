@@ -1,5 +1,15 @@
 import RegionsEnum from "./regionsEnum";
 
+// SIMPLE DATA
+
+export interface simpleDataItem {
+  flags: { svg: string };
+  name: { common: string };
+  population: number;
+  region: string;
+  capital: string;
+}
+
 export interface simpleCountryData {
   flag: string;
   name: string;
@@ -7,6 +17,10 @@ export interface simpleCountryData {
   region: string;
   capital: string;
 }
+
+// EXPANDED DATA
+
+export interface expandableDataItem {}
 
 export interface expandedCountryData {
   flag: string;
@@ -19,6 +33,5 @@ export interface expandedCountryData {
   topLevelDomain: string;
   currencies: string[];
   lnaguages: { [key: string]: string };
-  //TODO check type of borderCs!!!
   borderCountries: [];
 }

@@ -1,12 +1,20 @@
+import { simpleCountryData } from "../../../models/country";
 import "../../../styles/simpleCountry.scss";
 
-const ExpandedCountry = (props: any): JSX.Element => {
+const SimpleCountry = (props: {
+  country: simpleCountryData;
+  toggleExpanded: any;
+}): JSX.Element => {
   const { flag, name, population, region, capital } = props.country;
+  const { toggleExpanded } = props;
+  console.log(toggleExpanded);
+
   return (
     <div className="country-wrapper">
-      <div className="country-flag">
-        <img src={flag} alt="" />
-      </div>
+      <div
+        className="country-flag"
+        style={{ backgroundImage: `url(${flag})` }}
+      ></div>
       <div className="country-info-wrapper">
         <div className="country-title">{name}</div>
         <div className="country-population">
@@ -23,4 +31,4 @@ const ExpandedCountry = (props: any): JSX.Element => {
   );
 };
 
-export default ExpandedCountry;
+export default SimpleCountry;

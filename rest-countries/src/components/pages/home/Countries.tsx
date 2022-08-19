@@ -8,27 +8,37 @@ import "../../../styles/countries.scss";
 import { useEffect, useState } from "react";
 import { simpleCountryData } from "../../../models/country";
 
-const Countries = (): JSX.Element => {
+const Countries = (toggleExpanded: any): JSX.Element => {
   const [data, setData] = useState<simpleCountryData[]>();
-  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const getCountries = async () => {
-      const data = await extractSimpleData();
-      setData(data);
+      try {
+        const cData = await extractSimpleData();
+        setData(cData);
+      } catch (e) {
+        console.log(e);
+      }
     };
     getCountries();
   }, []);
+
   return (
-    <div className="countries-container">
+    <>
       {data ? (
-        data.map((country, index) => (
-          <SimpleCountry key={index} country={country} />
-        ))
+        <div className="countries-container">
+          {data.map((country, i) => (
+            <SimpleCountry
+              key={i}
+              country={country}
+              toggleExpanded={toggleExpanded}
+            />
+          ))}
+        </div>
       ) : (
         <Loading />
       )}
-    </div>
+    </>
   );
 };
 

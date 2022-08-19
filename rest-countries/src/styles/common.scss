@@ -41,6 +41,7 @@ html {
 }
 
 body {
+  overflow-x: hidden;
   margin: 0;
   font-family: "Nunito Sans", sans-serif;
   background-color: $very-light-gray;
@@ -49,4 +50,36 @@ body {
 main {
   width: 90%;
   margin: 0 auto;
+}
+
+// Loading
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.spinner-container {
+  font-size: 4vw;
+  text-align: center;
+  margin: 25% auto;
+  color: $dark-blue;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+
+.loading-spinner {
+  margin: 0 auto;
+  width: 200px;
+  height: 200px;
+  border: 10px solid hsl(0, 0%, 52%); /* Light grey */
+  border-top: 10px solid $dark-blue; /* Black */
+  border-radius: 50%;
+  animation: spinner 2s linear infinite;
 }
