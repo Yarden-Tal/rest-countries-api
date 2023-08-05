@@ -1,16 +1,16 @@
+import { useNavigate } from "react-router-dom";
 import { simpleCountryData } from "../../../models/country";
 import "../../../styles/simpleCountry.scss";
 
 const SimpleCountry = (props: {
   country: simpleCountryData;
-  toggleExpanded: any;
 }): JSX.Element => {
   const { flag, name, population, region, capital } = props.country;
-  const { toggleExpanded } = props;
-  console.log(toggleExpanded);
+
+  const navigate = useNavigate(); // Get the navigation function from React Router
 
   return (
-    <div className="country-wrapper">
+    <div className="country-wrapper" onClick={() => navigate(`/country/${name}`)}>
       <div
         className="country-flag"
         style={{ backgroundImage: `url(${flag})` }}

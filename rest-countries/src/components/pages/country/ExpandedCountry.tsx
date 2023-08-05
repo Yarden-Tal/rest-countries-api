@@ -1,11 +1,11 @@
-const ExpandedCountry = (isExpanded: any): JSX.Element => {
+const ExpandedCountry = (props: {name: string}): JSX.Element => {
   return (
     <div className="country-wrapper">
       <div className="country-flag">
         <img src="" alt="" />
       </div>
       <div className="country-info-wrapper">
-        <div className="country-title">Germany</div>
+        <div className="country-title">{props.name}</div>
         <div className="country-native-name">
           Native Name: <span>Deutschland</span>
         </div>
