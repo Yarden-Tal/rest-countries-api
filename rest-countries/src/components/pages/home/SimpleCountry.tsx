@@ -7,7 +7,7 @@ const SimpleCountry = (props: {
 }): JSX.Element => {
   const { flag, name, population, region, capital } = props.country;
 
-  const navigate = useNavigate(); // Get the navigation function from React Router
+  const navigate = useNavigate();
 
   return (
     <div className="country-wrapper" onClick={() => navigate(`/country/${name}`)}>
@@ -18,7 +18,7 @@ const SimpleCountry = (props: {
       <div className="country-info-wrapper">
         <div className="country-title">{name}</div>
         <div className="country-population">
-          Population: <span>{population}</span>
+          Population: <span>{population.toLocaleString()}</span>
         </div>
         <div className="country-region">
           Region: <span>{region}</span>

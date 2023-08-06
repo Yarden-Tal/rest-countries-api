@@ -17,13 +17,22 @@ const getData = async () => {
   }
 };
 
+const getCountryData = async (country: string) => {
+  try {
+    const res = (await axios(`${BASE_URL}name/${country}?fullText=true`)).data;
+    return res;
+  } catch (e) {
+    console.error(e);
+  }
+};
+
 export const extractSimpleData = async () => {
   try {
     const res = await getData();
     const simpleParams: simpleCountryData[] = res.map((c: simpleDataItem) => {
-      const flag = c.flags.svg;
-      const name = c.name.common;
-      const { population, region, capital } = c;
+      const flag: string = c.flags.svg;
+      const name: string = c.name.common;
+      const { population, region, capital }: { population: number, region: string, capital: string } = c;
       const paramsObj: simpleCountryData = {
         flag,
         name,
@@ -39,30 +48,7 @@ export const extractSimpleData = async () => {
   }
 };
 
-// export const extractExpandedData = async () => {
-//   const res = await getData();
-//   const expandedParams: expandedCountryData[] = res.map((c: any) => {
-//     const flag: string = c.flags.svg;
-//     const name: string = c.name.common;
-//     const {
-//       population,
-//       region,
-//       capital,
-//     }: { population: number; region: RegionsEnum; capital: string } = c;
-//     const paramsObj: expandedCountryData = {
-//       flag,
-//       name,
-//       population,
-//       region,
-//       capital,
-//       nativeName,
-//       subRegion,
-//       topLevelDomain,
-//       currencies,
-//       lnaguages,
-//       borderCountries
-//     };
-//     return paramsObj;
-//   });
-//   return expandedParams;
-// };
+export const getCountryPageData = async (country: string) => {
+  const res = await getCountryData(country);
+  return res[0];
+}
