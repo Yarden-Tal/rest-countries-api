@@ -1,0 +1,34 @@
+@use "./common.scss" as *;
+
+.country-wrapper-ex {
+    display: flex;
+    align-items: center;
+    border-radius: 3px;
+    max-width: 100%;
+    & .country-flag {
+        width: 40%;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    & .country-info-wrapper {
+        width: 60%;
+        font-weight: $weight-bold;
+        & .country-title {
+            font-weight: $weight-bold;
+            font-size: 1.2rem;
+            margin-bottom: 0.5em;
+        }
+        & .country-details {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: space-between;
+        }
+        & .country-border-c {
+            margin-top: 4rem;
+        }
+        & span {
+            font-weight: initial;
+        }
+    }
+}
