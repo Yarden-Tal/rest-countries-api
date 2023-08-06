@@ -50,6 +50,9 @@ const ExpandedCountry = (props: {name: string}): JSX.Element => {
         <div className="country-langs">
           Languages: <span>{getLanguages(data.languages)}</span>
         </div>
+        <div className="country-border-c">
+          Border Countries: <u>{"MISSING"}</u>
+        </div>
       </div>
     </div>
   );

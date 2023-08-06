@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 // API
 import { extractSimpleData } from "../../../api/countriesApi";
 // Components
@@ -5,7 +6,7 @@ import SimpleCountry from "./SimpleCountry";
 import Loading from "../../Loading";
 // Style
 import "../../../styles/countries.scss";
-import { useEffect, useState } from "react";
+// Models
 import { simpleCountryData } from "../../../models/country";
 
 const Countries = (): JSX.Element => {
