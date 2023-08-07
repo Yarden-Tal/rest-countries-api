@@ -11,12 +11,12 @@
 @media only screen and (min-width: 768px) {
   .countries-container {
     display: grid;
-    grid-template-columns: repeat(2, 24%);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media only screen and (min-width: 1024px) {
   .countries-container {
-    grid-template-columns: repeat(4, 24%);
+    grid-template-columns: repeat(4, 1fr);
   }
 }
