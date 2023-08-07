@@ -12,6 +12,7 @@ const SearchAndFilterBar = (props: {selectedRegion: string | number | readonly s
         <input
           type="search"
           name="search"
+          maxLength={40}
           placeholder="Search for a country..."
         />
       </div>
