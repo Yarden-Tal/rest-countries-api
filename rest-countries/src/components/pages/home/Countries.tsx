@@ -1,38 +1,41 @@
 import { useEffect, useState } from "react";
-// API
 import { extractSimpleData } from "../../../api/countriesApi";
-// Components
 import SimpleCountry from "./SimpleCountry";
 import Loading from "../../Loading";
-// Style
 import "../../../styles/countries.scss";
-// Models
 import { simpleCountryData } from "../../../models/country";
 
-const Countries = (): JSX.Element => {
-  const [data, setData] = useState<simpleCountryData[]>();
+const Countries = (props: { selectedRegion: string }): JSX.Element => {
+  const [data, setData] = useState<simpleCountryData[]>([]);
+  const { selectedRegion } = props;
 
   useEffect(() => {
     const getCountries = async () => {
       try {
         const cData = await extractSimpleData();
-        setData(cData);
+        
+        // Filter countries by selectedRegion if it's not an empty string
+        const filteredData = selectedRegion
+          ? cData.filter((c: any) => c.region === selectedRegion)
+          : cData;
+        
+        // Sort the filtered data by country name
+        const sortedData = filteredData.slice().sort((a: simpleCountryData, b: simpleCountryData) => a.name.localeCompare(b.name));
+        
+        setData(sortedData);
       } catch (e) {
         console.log(e);
       }
     };
     getCountries();
-  }, []);
+  }, [selectedRegion]);
 
   return (
     <>
-      {data ? (
+      {data.length > 0 ? (
         <div className="countries-container">
           {data.map((country, i) => (
-            <SimpleCountry
-              key={i}
-              country={country}
-            />
+            <SimpleCountry key={i} country={country} />
           ))}
         </div>
       ) : (

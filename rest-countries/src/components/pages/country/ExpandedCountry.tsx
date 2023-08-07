@@ -1,16 +1,20 @@
 import { useState, useEffect } from "react";
-import { getCountryPageData } from "../../../api/countriesApi";
+import { getBorderCountries, getCountryPageData } from "../../../api/countriesApi";
 import { getCurrencies, getLanguages, getNativeName } from "../../../utils/utils";
 import "./../../../styles/expandedCountry.scss"
 
 const ExpandedCountry = (props: { name: string }): JSX.Element => {
   const [data, setData] = useState<any>(null);
+  const [borderData, setBorderData] = useState<any>();
 
   useEffect(() => {
     async function fetchData() {
       try {
         const data = await getCountryPageData(props.name);
         setData(data);
+        const borderData = await getBorderCountries(data.borders);
+        setBorderData(borderData)
+        
       } catch (err) {
         console.error('Error fetching country data:', err);
       }
@@ -18,6 +22,7 @@ const ExpandedCountry = (props: { name: string }): JSX.Element => {
 
     fetchData();
   }, [props.name]);
+  
 
   if (!data) return <div>Loading...</div>;
   else return (
@@ -64,7 +69,7 @@ const ExpandedCountry = (props: { name: string }): JSX.Element => {
         </div>
 
         <div className="country-border-c">
-          Border Countries: <u>{"MISSING"}</u>
+          Border Countries: {data.borders.map((i: string) => <span key={i} className="border-c">{i}</span>)}
         </div>
       </div>
     </div>

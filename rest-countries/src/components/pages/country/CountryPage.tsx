@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import ExpandedCountry from "./ExpandedCountry";
 import Header from "../../Header";
 import BackButton from "./BackButton";
+import "../../../styles/countryPage.scss"
 
 const CountryPage = (): JSX.Element => {
   const { name } = useParams();
@@ -9,7 +10,7 @@ const CountryPage = (): JSX.Element => {
   return <>
   <Header />
   <BackButton />
-  <main>
+  <main className="c-main">
     <ExpandedCountry name={name!} />
   </main>
   </>

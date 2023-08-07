@@ -26,9 +26,16 @@
         }
         & .country-border-c {
             margin-top: 4rem;
+            & .border-c {
+                margin-left: 0.75rem;
+                padding: 4px 24px;
+                box-shadow: $chosen-shadow;
+                border: 1px solid rgba(0, 0, 0, 0.091);
+                border-radius: 5px;
+            }
         }
         & span {
-            font-weight: initial;
+            font-weight: 400;
         }
     }
 }
