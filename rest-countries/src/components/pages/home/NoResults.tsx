@@ -1,12 +1,15 @@
-import noResultsSvg from "../../../assets/noResults.svg"
+import noResultsSvg from "../../../assets/noResults.svg";
+import "../../../styles/noResults.scss"
 
 const NoResults = (): JSX.Element => {
   return (
     <div>
-      <div>No results. Try again!</div>
-      <img src={noResultsSvg} alt="no-results" />
+      <div className="nr-txt">No results. <strong>Try again!</strong></div>
+      <div className="img-wrapper">
+        <img className="heartbeat" src={noResultsSvg} alt="no-results" />
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default NoResults
+export default NoResults;
