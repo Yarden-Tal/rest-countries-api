@@ -8,11 +8,11 @@ const CountryPage = (): JSX.Element => {
   const { name } = useParams();
 
   return <>
-  <Header />
-  <BackButton />
-  <main className="c-main">
-    <ExpandedCountry name={name!} />
-  </main>
+    <Header />
+    <BackButton />
+    <main className="c-main">
+      <ExpandedCountry name={name!} />
+    </main>
   </>
 };
 

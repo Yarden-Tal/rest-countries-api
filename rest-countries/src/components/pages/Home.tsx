@@ -6,6 +6,7 @@ import SearchAndFilterBar from "./home/SearchAndFilterBar";
 
 const Home = (): JSX.Element => {
   const [selectedRegion, setSelectedRegion] = useState<string>("");
+  const [search, setSearch] = useState<string>("");
 
   const regions = [
     { value: "", label: "Filter by Region" },
@@ -21,8 +22,8 @@ const Home = (): JSX.Element => {
     <>
       <Header />
       <main>
-        <SearchAndFilterBar {...{selectedRegion, setSelectedRegion, regions}} />
-        <Countries {...{selectedRegion}} />
+        <SearchAndFilterBar {...{selectedRegion, setSelectedRegion, regions, search, setSearch}} />
+        <Countries {...{selectedRegion, search}} />
       </main>
     </>
   );

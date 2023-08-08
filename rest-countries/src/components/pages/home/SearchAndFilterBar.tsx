@@ -1,8 +1,7 @@
-import { useState } from "react";
 import searchSvg from "../../../assets/search.svg";
 import "../../../styles/searchAndFilterBar.scss";
 
-const SearchAndFilterBar = (props: {selectedRegion: string | number | readonly string[] | undefined, setSelectedRegion: (arg0: string) => void, regions: any[]}): JSX.Element => {
+const SearchAndFilterBar = (props: { selectedRegion: string | number | readonly string[] | undefined, setSelectedRegion: (arg0: string) => void, regions: any[], search: string, setSearch: (arg0: string) => void, }): JSX.Element => {
 
 
   return (
@@ -10,6 +9,7 @@ const SearchAndFilterBar = (props: {selectedRegion: string | number | readonly s
       <div className="search-wrapper">
         <img src={searchSvg} alt="search" className="search-icon" />
         <input
+          onChange={e => props.setSearch(e.target.value)}
           type="search"
           name="search"
           maxLength={40}
