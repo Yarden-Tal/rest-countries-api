@@ -15,9 +15,14 @@
     & input {
       border: none;
       width: 23vw;
+      &::-webkit-search-cancel-button {
+        padding: 1px;
+        cursor: pointer;
+      }
       &:focus {
         border: none;
         outline: none;
+        background-color: transparent;
       }
     }
   }

@@ -4,7 +4,7 @@ import "../styles/header.scss";
 const Header = (): JSX.Element => {
   return (
     <header>
-      <div className="main-title">Where in the world?</div>
+      <div onClick={() => window.location.reload()} className="main-title">Where in the world?</div>
       <button>
         <span>
           <img src={moonSvg} />

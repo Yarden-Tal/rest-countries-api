@@ -11,6 +11,7 @@ header {
   box-shadow: $chosen-shadow;
 
   & .main-title {
+    cursor: pointer;
     font-weight: $weight-bolder;
     font-size: $homepage-font-size + 4px;
   }
