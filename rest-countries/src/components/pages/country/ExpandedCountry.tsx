@@ -9,44 +9,47 @@ import {
   getNativeName,
 } from "../../../utils/utils";
 import "./../../../styles/expandedCountry.scss";
+import { expandedCountryData } from "../../../models/country";
 
 const ExpandedCountry = (props: { name: string }): JSX.Element => {
-  const [data, setData] = useState<any>(null);
-  const [borderData, setBorderData] = useState<any>();
+  const [data, setData] = useState<expandedCountryData>();
+  const [borderData, setBorderData] = useState<string[]>();
+  const [loadingTimeout, setLoadingTimeout] = useState<boolean>(false);
 
   useEffect(() => {
+    const timeout: number = setTimeout(() => {
+      setLoadingTimeout(true);
+    }, 7000);
+
     async function fetchData() {
       try {
-        const data = await getCountryPageData(props.name);
-        setData(data);
-        const borderData = await getBorderCountries(data.borders);
-        setBorderData(borderData);
+        const fetchedData = await getCountryPageData(props.name);
+        clearTimeout(timeout);
+        setData(fetchedData);
+
+        if (fetchedData.borders) {
+          const borders: string[] | undefined = getBorderCountries(fetchedData.borders);
+          setBorderData(borders);
+        }
       } catch (err) {
-        console.error("Error fetching country data:", err);
+        const errMsg: string = "Error fetching country data:";
+        console.error(`${errMsg} ${err}`);
+        setLoadingTimeout(true);
       }
     }
-
     fetchData();
   }, [props.name]);
 
-  const {
-    flags,
-    name,
-    population,
-    region,
-    subregion,
-    capital,
-    tld,
-    currencies,
-    languages,
-  } = data;
+  console.log(data);
+  
 
-  if (!data) return <div>Loading...</div>;
+  if (loadingTimeout) return <div>Could not get data</div>;
+  else if (!data) return <div>Loading...</div>;
   else
     return (
       <div className="country-wrapper-ex">
         <div className="country-flag">
-          <img src={flags.png} alt={flags.alt} />
+          <img src={data.flags.png} alt={data.flags.alt} />
         </div>
         <div className="country-info-wrapper">
           <div className="country-title">{props.name}</div>
@@ -54,45 +57,46 @@ const ExpandedCountry = (props: { name: string }): JSX.Element => {
           <div className="country-details">
             {/* 1st group */}
             <div>
-              <div className="country-native-name">
-                Native Name: <span>{getNativeName(name.nativeName)}</span>
-              </div>
+              {data.name.nativeName ? <div className="country-native-name">
+                Native Name: <span>{getNativeName(data.name.nativeName)}</span>
+              </div> : <></>}
               <div className="country-population">
-                Population: <span>{population.toLocaleString()}</span>
+                Population: <span>{data.population.toLocaleString()}</span>
               </div>
               <div className="country-region">
-                Region: <span>{region}</span>
+                Region: <span>{data.region}</span>
               </div>
-              <div className="country-sub-region">
-                Sub Region: <span>{subregion}</span>
-              </div>
-              <div className="country-capital">
-                Capital: <span>{capital[0]}</span>
-              </div>
+              {data.subregion ? <div className="country-sub-region">
+                Sub Region: <span>{data.subregion}</span>
+              </div> : <></>}
+              {data.capital ? <div className="country-capital">
+                Capital: <span>{data.capital}</span>
+              </div> : <></>}
             </div>
 
             {/* 2nd group */}
             <div>
               <div className="country-domain">
-                Top Level Domain: <span>{tld[0]}</span>
+                Top Level Domain: <span>{data.tld}</span>
               </div>
-              <div className="country-currencies">
-                Currencies: <span>{getCurrencies(currencies)}</span>
-              </div>
-              <div className="country-langs">
-                Languages: <span>{getLanguages(languages)}</span>
-              </div>
+              {data.currencies ? <div className="country-currencies">
+                Currencies: <span>{getCurrencies(data.currencies)}</span>
+              </div> : <></>}
+              {data.languages ? <div className="country-langs">
+                Languages: <span>{getLanguages(data.languages)}</span>
+              </div> : <></>}
             </div>
           </div>
-
-          <div className="country-border-c">
-            Border Countries:{" "}
-            {data.borders.map((i: string) => (
+          {borderData ? <div className="country-border-c">
+            <div className="borders-label">Border Countries:</div>
+            <div className="borders">
+            {borderData.map((i: string) => (
               <span key={i} className="border-c">
                 {i}
               </span>
             ))}
-          </div>
+            </div>
+          </div> : <></>}
         </div>
       </div>
     );

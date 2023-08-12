@@ -2,7 +2,7 @@ export const getNativeName = (nativeName: { [x: string]: { common: string; }; })
     return nativeName[Object.keys(nativeName)[0]].common;
   }
 
-export const getCurrencies = (currencies: { [x: string]: { name: any; }; }): string => {
+export const getCurrencies = (currencies: { [x: string]: { name: string; }; }): string => {
   const currencyNamesArray = Object.keys(currencies).map(currencyCode => currencies[currencyCode].name);
   const capitalizedCurrencyNames: string[] = currencyNamesArray.map(currencyName => {
     const words: string[] = currencyName.split(" ");
@@ -12,7 +12,7 @@ export const getCurrencies = (currencies: { [x: string]: { name: any; }; }): str
   return capitalizedCurrencyNames.join(", ");
 }
 
-export const getLanguages = (langs: { [x: string]: any; }): string => {
+export const getLanguages = (langs: { [x: string]: string; }): string => {
   const langsArray: string[] = Object.keys(langs).map(l => langs[l]);
   return langsArray.join(", ");
 }

@@ -28,7 +28,7 @@ const SearchAndFilterBar = (props: {
           value={selectedRegion}
           onChange={(e) => setSelectedRegion(e.target.value)}
         >
-          {regions.map((option: any) => (
+          {regions.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}
             </option>

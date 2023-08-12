@@ -1,43 +1,29 @@
-import axios from "axios";
 import {
   simpleDataItem,
   expandedCountryData,
   simpleCountryData,
 } from "../models/country";
+import { getAllCountries, getCountryByName } from "./apiCalls";
 
-const BASE_URL: string = "https://restcountries.com/v3.1/";
 const LOCAL_STORAGE_KEY: string = "countryData";
+const LOCAL_STORAGE_EXP_KEY: string = "countryDataExp";
 
-const getData = async () => {
-  try {
-    const res = (await axios(`${BASE_URL}all`)).data;
-    return res;
-  } catch (e) {
-    console.error(e);
+const getCountryData = (countryName: string) => {
+  const storedData = localStorage.getItem(LOCAL_STORAGE_EXP_KEY);
+  if (storedData) {
+    const countryData = JSON.parse(storedData);
+    const countryInfo = countryData.find((c: expandedCountryData) => c.name.common === countryName);
+    return [countryInfo];
   }
-};
-
-const getCountryData = async (country: string) => {
-  try {
-    const storedData = localStorage.getItem(LOCAL_STORAGE_KEY);
-    if (storedData) {
-      const countryData = JSON.parse(storedData);
-      const countryInfo = countryData.find((c: simpleCountryData) => c.name === country);
-      return [countryInfo];
-    }
-    
-    const res = (await axios(`${BASE_URL}name/${country}?fullText=true`)).data;
-    return res;
-  } catch (e) {
-    console.error(e);
-  }
+  else getCountryByName(countryName);
 };
 
 export const extractSimpleData = async () => {
-  try {
-    const storedData = localStorage.getItem(LOCAL_STORAGE_KEY);
-    if (storedData) return JSON.parse(storedData);
-    const res = await getData();
+  const storedData = localStorage.getItem(LOCAL_STORAGE_KEY);
+  if (storedData) return JSON.parse(storedData);
+  else {
+    const res = await getAllCountries();
+    localStorage.setItem(LOCAL_STORAGE_EXP_KEY, JSON.stringify(res));
     const simpleParams: simpleCountryData[] = res.map((c: simpleDataItem) => {
       const flag: string = c.flags.svg;
       const name: string = c.name.common;
@@ -53,25 +39,18 @@ export const extractSimpleData = async () => {
     });
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(simpleParams));
     return simpleParams;
-  } catch (e) {
-    console.error(e);
   }
 };
 
-export const getCountryPageData = async (country: string) => {
-  const res = await getCountryData(country);
-  return res[0];
+export const getCountryPageData = (country: string) => {
+  const res = getCountryData(country);
+  if (res) return res[0];
 }
 
-export const getBorderCountries = async (borderCountries: string[]) => {
-  try {
-    borderCountries.forEach(async (c: any) => {
-      const res = await axios(`${BASE_URL}alpha?codes=${c.cioc}`)
-      console.log(res);
-      
-    })
-  } catch (e) {
-    console.error(e);
-    
-  }
+export const getBorderCountries = (borders: string[]): string[] | undefined => {
+  const storedData: string| null = localStorage.getItem(LOCAL_STORAGE_EXP_KEY);
+  if (!storedData) return;
+  const filteredParsedData = borders.flatMap((bc: string) => JSON.parse(storedData).filter((i: expandedCountryData) => i.cca3 === bc))
+  const bordersArray: string[] = filteredParsedData.map(i => i.name.common)
+  return bordersArray;
 }

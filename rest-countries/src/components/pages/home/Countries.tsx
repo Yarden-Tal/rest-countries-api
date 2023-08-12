@@ -15,18 +15,17 @@ const Countries = (props: { selectedRegion: string, search: string }): JSX.Eleme
     const getCountries = async () => {
       try {
         const cData = await extractSimpleData();
+        
         let filteredData = selectedRegion
-          ? cData.filter((c: simpleCountryData) => c.region === selectedRegion)
-          : cData;
-
+        ? cData.filter((c: simpleCountryData) => c.region === selectedRegion)
+        : cData;
+        
         if (search) {
           filteredData = filteredData.filter((c: simpleCountryData) =>
-            c.name.toLowerCase().includes(search.toLowerCase())
+          c.name.toLowerCase().includes(search.toLowerCase())
           );
         }
-
         const sortedData: simpleCountryData[] = filteredData.slice().sort((a: simpleCountryData, b: simpleCountryData) => a.name.localeCompare(b.name));
-
         setData(sortedData);
       } catch (e) {
         console.log(e);
