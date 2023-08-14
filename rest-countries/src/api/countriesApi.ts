@@ -8,14 +8,15 @@ import { getAllCountries, getCountryByName } from "./apiCalls";
 const LOCAL_STORAGE_KEY: string = "countryData";
 const LOCAL_STORAGE_EXP_KEY: string = "countryDataExp";
 
-const getCountryData = (countryName: string) => {
+const getCountryData = async (countryName: string) => {
   const storedData = localStorage.getItem(LOCAL_STORAGE_EXP_KEY);
   if (storedData) {
     const countryData = JSON.parse(storedData);
     const countryInfo = countryData.find((c: expandedCountryData) => c.name.common === countryName);
     return [countryInfo];
   }
-  else return getCountryByName(countryName);
+  else 
+  return await getCountryByName(countryName);
 };
 
 export const extractSimpleData = async () => {
@@ -42,8 +43,8 @@ export const extractSimpleData = async () => {
   }
 };
 
-export const getCountryPageData = (country: string) => {
-  const res = getCountryData(country);
+export const getCountryPageData = async (country: string) => {
+  const res = await getCountryData(country);
   //@ts-ignore
   if (res) return res[0];
 }
