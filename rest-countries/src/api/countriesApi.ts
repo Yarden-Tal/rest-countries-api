@@ -15,7 +15,7 @@ const getCountryData = (countryName: string) => {
     const countryInfo = countryData.find((c: expandedCountryData) => c.name.common === countryName);
     return [countryInfo];
   }
-  else getCountryByName(countryName);
+  else return getCountryByName(countryName);
 };
 
 export const extractSimpleData = async () => {
@@ -44,6 +44,7 @@ export const extractSimpleData = async () => {
 
 export const getCountryPageData = (country: string) => {
   const res = getCountryData(country);
+  //@ts-ignore
   if (res) return res[0];
 }
 
