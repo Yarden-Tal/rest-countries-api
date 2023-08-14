@@ -41,9 +41,6 @@ const ExpandedCountry = (props: { name: string }): JSX.Element => {
     fetchData();
   }, [props.name]);
 
-  console.log(data);
-  
-
   if (loadingTimeout) return <div>Could not get data</div>;
   else if (!data) return <div>Loading...</div>;
   else
@@ -92,8 +89,8 @@ const ExpandedCountry = (props: { name: string }): JSX.Element => {
             <div className="borders-label">Border Countries:</div>
             <div className="borders">
             {borderData.map((i: string) => (
-                <Link to={`/country/${i}`}>
-                  <span key={i} className="border-c">{i}</span>
+                <Link key={i} to={`/country/${i}`}>
+                  <span className="border-c">{i}</span>
                 </Link>
             ))}
             </div>
