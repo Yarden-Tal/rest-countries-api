@@ -13,7 +13,7 @@ const getCountryData = async (countryName: string) => {
   if (storedData) {
     const countryData = JSON.parse(storedData);
     const countryInfo = countryData.find((c: expandedCountryData) => c.name.common === countryName);
-    return [countryInfo];
+    return countryInfo;
   }
   else 
   return await getCountryByName(countryName);
@@ -45,8 +45,7 @@ export const extractSimpleData = async () => {
 
 export const getCountryPageData = async (country: string) => {
   const res = await getCountryData(country);
-  //@ts-ignore
-  if (res) return res[0];
+  if (res) return res;
 }
 
 export const getBorderCountries = (borders: string[]): string[] | undefined => {
