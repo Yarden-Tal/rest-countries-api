@@ -1,15 +1,21 @@
+import {useNavigate} from "react-router-dom";
 import moonSvg from "../assets/moon.svg";
 import "../styles/header.scss";
 
 const Header = (): JSX.Element => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate("/")
+    window.scrollTo({top: 0})
+  }
   return (
     <header>
-      <div onClick={() => window.location.reload()} className="main-title">Where in the world?</div>
+      <div onClick={() => handleClick()} className="main-title">Where in the world?</div>
       <button>
         <span>
           <img src={moonSvg} />
         </span>{" "}
-        Dark Mode
+        <span>Dark Mode</span>
       </button>
     </header>
   );

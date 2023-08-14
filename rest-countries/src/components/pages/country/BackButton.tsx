@@ -7,11 +7,14 @@ const BackButton = (): JSX.Element => {
 
   return (
     <div className="back-btn" onClick={() => navigate("/")}>
-      <span>
-        <img src={backSvg} alt="<-" />
+      <span className="inner">
+        <span className="img-wr">
+          <img src={backSvg} alt="<-" />
+        </span>
+        <span>Back</span>
       </span>
-      <span>Back</span>
-    </div>);
+    </div>
+  );
 };
 
 export default BackButton;

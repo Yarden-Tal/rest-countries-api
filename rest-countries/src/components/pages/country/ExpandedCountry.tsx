@@ -10,6 +10,7 @@ import {
 } from "../../../utils/utils";
 import "./../../../styles/expandedCountry.scss";
 import { expandedCountryData } from "../../../models/country";
+import { Link } from "react-router-dom";
 
 const ExpandedCountry = (props: { name: string }): JSX.Element => {
   const [data, setData] = useState<expandedCountryData>();
@@ -91,9 +92,9 @@ const ExpandedCountry = (props: { name: string }): JSX.Element => {
             <div className="borders-label">Border Countries:</div>
             <div className="borders">
             {borderData.map((i: string) => (
-              <span key={i} className="border-c">
-                {i}
-              </span>
+                <Link to={`/country/${i}`}>
+                  <span key={i} className="border-c">{i}</span>
+                </Link>
             ))}
             </div>
           </div> : <></>}
