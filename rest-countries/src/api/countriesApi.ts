@@ -9,13 +9,13 @@ const LOCAL_STORAGE_KEY: string = "countryData";
 const LOCAL_STORAGE_EXP_KEY: string = "countryDataExp";
 
 const getCountryData = async (countryName: string) => {
-  const storedData = localStorage.getItem(LOCAL_STORAGE_EXP_KEY);
-  if (storedData) {
-    const countryData = JSON.parse(storedData);
-    const countryInfo = countryData.find((c: expandedCountryData) => c.name.common === countryName);
-    return countryInfo;
-  }
-  else 
+  // const storedData = localStorage.getItem(LOCAL_STORAGE_EXP_KEY);
+  // if (storedData) {
+  //   const countryData = JSON.parse(storedData);
+  //   const countryInfo = countryData.find((c: expandedCountryData) => c.name.common === countryName);
+  //   return countryInfo;
+  // }
+  // else 
   return await getCountryByName(countryName);
 };
 
