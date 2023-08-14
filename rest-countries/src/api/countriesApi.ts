@@ -10,9 +10,13 @@ const LOCAL_STORAGE_EXP_KEY: string = "countryDataExp";
 
 const getCountryData = async (countryName: string) => {
   const storedData = localStorage.getItem(LOCAL_STORAGE_EXP_KEY);
-    const countryData = JSON.parse(storedData!);
+  if (storedData) {
+    const countryData = JSON.parse(storedData);
     const countryInfo = countryData.find((c: expandedCountryData) => c.name.common === countryName);
     return countryInfo;
+  }
+  else 
+  return await getCountryByName(countryName);
 };
 
 export const extractSimpleData = async () => {
