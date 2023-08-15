@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { simpleCountryData } from "../../../models/country";
 import { useTheme } from "../../../context/ColorThemeContext";
 import "../../../styles/components/simpleCountry.scss";
@@ -9,12 +9,11 @@ const SimpleCountry = (props: {
   country: simpleCountryData;
 }): JSX.Element => {
   const { flag, name, population, region, capital } = props.country;
-
-  const navigate = useNavigate();
   const { isDarkMode } = useTheme();
 
   return (
-    <div className={isDarkMode ? "country-wrapper dark-lighter dark-shadow" : "country-wrapper"} onClick={() => navigate(`/country/${name}`)}>
+    <Link className={isDarkMode ? "country-wrapper dark-lighter dark-shadow" : "country-wrapper"} 
+          to={`/country/${name}`}>
       <div className="flag-wrapper">
         <img className="country-flag" src={flag} alt={flag} />
       </div>
@@ -34,7 +33,7 @@ const SimpleCountry = (props: {
           Capital: <span>{capital}</span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
