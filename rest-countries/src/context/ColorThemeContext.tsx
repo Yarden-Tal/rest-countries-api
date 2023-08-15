@@ -21,7 +21,7 @@ const isDarkOnStorage: boolean = (storedDarkMode === "true")
   /**
    * Toggles between dark & light mode & saves choice in local-storage
    */
-  const toggleTheme = () => {
+  const toggleTheme = (): void => {
     const newDarkMode: boolean = !isDarkMode;
     setIsDarkMode(newDarkMode);
     localStorage.setItem(DARK_MODE_KEY, String(newDarkMode));
