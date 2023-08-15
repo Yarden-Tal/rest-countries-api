@@ -1,5 +1,5 @@
 import noResultsSvg from "../../../assets/noResults.svg";
-import "../../../styles/noResults.scss"
+import "../../../styles/components/noResults.scss"
 
 const NoResults = (): JSX.Element => {
   return (

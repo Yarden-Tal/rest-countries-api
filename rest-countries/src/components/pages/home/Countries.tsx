@@ -3,7 +3,7 @@ import { extractSimpleData } from "../../../api/countriesApi";
 import SimpleCountry from "./SimpleCountry";
 import Loading from "../../Loading";
 import NoResults from "../home/NoResults";
-import "../../../styles/countries.scss";
+import "../../../styles/components/countries.scss";
 import { simpleCountryData } from "../../../models/country";
 
 const Countries = (props: { selectedRegion: string, search: string }): JSX.Element => {

@@ -1,11 +1,12 @@
-@use "./common.scss" as *;
+@use "../common.scss" as *;
+@use "../variables" as *;
 
 .search-filter-wrapper {
   margin: 2em 0;
   display: flex;
   justify-content: space-between;
   & .search-wrapper {
-    background: $chosen-white;
+    background-color: $chosen-white;
     padding: 0.75em 1.5em;
     border-radius: 3px;
     box-shadow: $chosen-shadow;
@@ -27,11 +28,11 @@
     }
   }
   & .filter-wrapper {
-    background: $chosen-white;
-    padding: 0.75em;
+    background-color: $chosen-white;
     border-radius: 3px;
     cursor: pointer;
     & select {
+      padding: 0.75em;
       cursor: pointer;
       border: none;
       & * {

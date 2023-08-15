@@ -1,0 +1,15 @@
+html {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+  }
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+  
+  body {
+    overflow-x: hidden;
+    margin: 0;
+    font-family: "Nunito Sans", sans-serif;
+  }

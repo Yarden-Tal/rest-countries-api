@@ -1,21 +1,18 @@
 import { useState, useEffect } from "react";
-import {
-  getBorderCountries,
-  getCountryPageData,
-} from "../../../api/countriesApi";
-import {
-  getCurrencies,
-  getLanguages,
-  getNativeName,
-} from "../../../utils/utils";
-import "./../../../styles/expandedCountry.scss";
 import { expandedCountryData } from "../../../models/country";
 import { Link } from "react-router-dom";
+import { useTheme } from "../../../context/ColorThemeContext";
+import { getBorderCountries, getCountryPageData } from "../../../api/countriesApi";
+import { getCurrencies, getLanguages, getNativeName } from "../../../utils/utils";
+import "./../../../styles/components/expandedCountry.scss";
+import "./../../../styles/common.scss";
 
 const ExpandedCountry = (props: { name: string }): JSX.Element => {
   const [data, setData] = useState<expandedCountryData>();
   const [borderData, setBorderData] = useState<string[]>();
   const [loadingTimeout, setLoadingTimeout] = useState<boolean>(false);
+
+  const { isDarkMode } = useTheme();
 
   useEffect(() => {
     const timeout: number = setTimeout(() => {
@@ -47,7 +44,7 @@ const ExpandedCountry = (props: { name: string }): JSX.Element => {
     return (
       <div className="country-wrapper-ex">
         <div className="country-flag">
-          <img src={data.flags.png} alt={data.flags.alt} />
+          <img className={isDarkMode ? "dark-shadow" : ""} src={data.flags.png} alt={data.flags.alt} />
         </div>
         <div className="country-info-wrapper">
           <div className="country-title">{props.name}</div>
@@ -90,7 +87,7 @@ const ExpandedCountry = (props: { name: string }): JSX.Element => {
             <div className="borders">
             {borderData.map((i: string) => (
                 <Link key={i} to={`/country/${i}`}>
-                  <span className="border-c">{i}</span>
+                  <span className={isDarkMode ? "border-c dark-shadow" : "border-c"}>{i}</span>
                 </Link>
             ))}
             </div>

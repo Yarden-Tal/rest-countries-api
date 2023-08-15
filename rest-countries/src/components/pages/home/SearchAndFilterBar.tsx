@@ -1,5 +1,7 @@
+import { useTheme } from "../../../context/ColorThemeContext";
 import searchSvg from "../../../assets/search.svg";
-import "../../../styles/searchAndFilterBar.scss";
+import searchWhiteSvg from "../../../assets/search-white.svg";
+import "../../../styles/components/searchAndFilterBar.scss";
 
 const SearchAndFilterBar = (props: {
   selectedRegion: string | number | readonly string[] | undefined;
@@ -9,12 +11,14 @@ const SearchAndFilterBar = (props: {
   setSearch: (arg0: string) => void;
 }): JSX.Element => {
   const { selectedRegion, setSelectedRegion, regions, setSearch } = props;
+  const { isDarkMode } = useTheme();
 
   return (
     <div className="search-filter-wrapper">
-      <div className="search-wrapper">
-        <img src={searchSvg} alt="search" className="search-icon" />
+      <div className={isDarkMode ? "search-wrapper dark-lighter dark-shadow" : "search-wrapper"}>
+        <img src={isDarkMode ? searchWhiteSvg : searchSvg} alt="search" className="search-icon" />
         <input
+          className={isDarkMode ? "dark-lighter" : ""}
           onChange={(e) => setSearch(e.target.value)}
           type="search"
           name="search"
@@ -22,8 +26,9 @@ const SearchAndFilterBar = (props: {
           placeholder="Search for a country..."
         />
       </div>
-      <div className="filter-wrapper">
+      <div className={isDarkMode ? "filter-wrapper dark-lighter" : "filter-wrapper"}>
         <select
+          className={isDarkMode ? "dark-lighter" : ""}
           name="region"
           value={selectedRegion}
           onChange={(e) => setSelectedRegion(e.target.value)}

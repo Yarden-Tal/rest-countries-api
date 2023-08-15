@@ -1,23 +1,24 @@
-@use "./common.scss" as *;
+@use "../common.scss" as *;
+@use "../variables" as *;
 
 .country-wrapper {
   background-color: $chosen-white;
   box-shadow: $chosen-shadow;
   border-radius: 3px;
   max-width: 100%;
-  max-height: 40vh;
+  height: 40vh;
   cursor: pointer;
   &:hover {
     opacity: 0.9;
   }
-  & .country-flag {
-    width: 100%;
-    padding-top: 50%;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+  & .flag-wrapper {
+    height: 45%;
+    & .country-flag {
+      width: 100%;
+    }
   }
   & .country-info-wrapper {
+    height: 55%;
     padding: 2em;
     & .country-title {
       font-weight: $weight-bold;

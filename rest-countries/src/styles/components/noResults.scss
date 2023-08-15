@@ -1,0 +1,14 @@
+@use "../animations" as *;
+  
+.nr-txt {
+    margin-top: 8rem;
+    text-align: center;
+    font-weight: 500;
+    font-size: 1.85rem;
+}
+
+.img-wrapper {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+}

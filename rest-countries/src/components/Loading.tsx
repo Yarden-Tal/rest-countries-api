@@ -1,3 +1,5 @@
+import "../styles/components/loading.scss";
+
 const Loading = () => {
   return (
     <div className="spinner-container">

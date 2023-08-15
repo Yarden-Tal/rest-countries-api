@@ -1,7 +1,9 @@
 import {useNavigate} from "react-router-dom";
-import moonSvg from "../assets/moon.svg";
-import "../styles/header.scss";
 import { useTheme } from "../context/ColorThemeContext";
+import moonSvg from "../assets/moon.svg";
+import moonWhiteSvg from "../assets/moon-white.svg";
+import "../styles/components/header.scss";
+import "../styles/common.scss";
 
 const Header = (): JSX.Element => {
   const navigate = useNavigate();
@@ -11,16 +13,15 @@ const Header = (): JSX.Element => {
   }
 
   const { toggleTheme, isDarkMode } = useTheme();
-
   
   return (
-    <header>
+    <header className={isDarkMode ? "dark dark-shadow" : ""}>
       <div onClick={() => handleClick()} className="main-title">Where in the world?</div>
-      <button onClick={() => {toggleTheme();   console.log(isDarkMode);}}>
+      <button className={isDarkMode ? "dark" : ""} onClick={() => {toggleTheme()}}>
         <span>
-          <img src={moonSvg} />
+          <img className={isDarkMode ? "theme-btn-dark" : ""} src={isDarkMode ? moonWhiteSvg : moonSvg} />
         </span>{" "}
-        <span>Dark Mode</span>
+        <span className={isDarkMode ? "dark" : ""}>{ isDarkMode ? "Light Mode" : "Dark Mode"}</span>
       </button>
     </header>
   );
