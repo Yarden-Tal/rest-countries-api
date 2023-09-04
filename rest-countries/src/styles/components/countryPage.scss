@@ -1,5 +1,14 @@
+@use "../variables" as *;
+
 .c-main {
     padding: 0 3em;
     width: initial;
     margin: initial;
 }
+
+
+@media only screen and (min-width: $desktop) {
+    .c-main {
+        padding: $inner-width-wide
+    }
+  }

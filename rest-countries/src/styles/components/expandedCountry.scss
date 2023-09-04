@@ -7,16 +7,17 @@
     border-radius: 3px;
     max-width: 100%;
     & .country-flag {
-        width: 40%;
+        width: 52%;
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
         & img {
+            width: 82%;
             box-shadow: $chosen-shadow;
         }
     }
     & .country-info-wrapper {
-        width: 60%;
+        width: 48%;
         font-weight: $weight-bold;
         & .country-title {
             font-weight: $weight-bold;
@@ -31,7 +32,8 @@
         & .country-border-c {
             margin-top: 4rem;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
+            gap: 1rem;
             & .borders-label {
                 text-wrap: nowrap;
                 width: 20%;

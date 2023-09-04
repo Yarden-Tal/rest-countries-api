@@ -34,3 +34,9 @@
         padding: 0.25rem 2rem;
     }
 }
+
+@media only screen and (min-width: $desktop) {
+    .back-btn {
+        padding: $inner-width-wide
+    }
+}

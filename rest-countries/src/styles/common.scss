@@ -2,7 +2,7 @@
 @use "./base" as *;
 
 main {
-  width: 90%;
+  padding: 0 3rem;
   margin: 0 auto;
 }
 
@@ -23,5 +23,12 @@ main {
 @media only screen and (max-width: $desktop-sm) {
   main {
     margin-bottom: 20px;
+  }
+}
+
+
+@media only screen and (min-width: $desktop) {
+ main {
+      padding: $inner-width-wide
   }
 }
