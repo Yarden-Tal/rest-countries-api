@@ -19,3 +19,9 @@ main {
 .dark-shadow {
   box-shadow: $shadow-dark !important;
 }
+
+@media only screen and (max-width: $desktop-sm) {
+  main {
+    margin-bottom: 20px;
+  }
+}

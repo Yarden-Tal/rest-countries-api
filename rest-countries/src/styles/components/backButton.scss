@@ -1,5 +1,6 @@
 @use "../common.scss" as *;
 @use "../animations" as *;
+@use "../variables" as *;
 
 .back-btn {
     margin: 4rem 0;
@@ -25,5 +26,11 @@
             -webkit-animation: pulsate-fwd 0.5s ease-in-out infinite both;
 	        animation: pulsate-fwd 0.5s ease-in-out infinite both;
         }
+    }
+}
+
+@media only screen and (max-width: $desktop-sm) {
+    .inner {
+        padding: 0.25rem 2rem;
     }
 }
