@@ -72,7 +72,7 @@ const ExpandedCountry = (props: { name: string }): JSX.Element => {
             {/* 2nd group */}
             <div>
               <div className="country-domain">
-                Top Level Domain: <span>{data.tld}</span>
+                Top Level Domain: <span>{data.tld[0]}</span>
               </div>
               {data.currencies ? <div className="country-currencies">
                 Currencies: <span>{getCurrencies(data.currencies)}</span>
